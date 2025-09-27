@@ -96,3 +96,9 @@ bash, curl, dig (bind-tools), ping (iputils),
 netcat-openbsd, tcpdump, nmap, traceroute,
 busybox-extras
 ```
+## License
+This project (Dockerfiles, configuration, documentation) is licensed under the MIT License.
+
+Note: The container image bundles third-party open-source tools (bash, curl, nmap, etc.),
+which are licensed under their respective licenses (GPL, BSD, MIT, ISC).  
+See the upstream projects for details.
