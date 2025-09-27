@@ -10,6 +10,10 @@ RUN apk add --no-cache \
     nmap \
     traceroute \
     busybox-extras \
+    iperf3 \
+    mtr \
+    socat \
+    jq \
     dumb-init
 
 RUN printf "%s\n" \
@@ -17,9 +21,9 @@ RUN printf "%s\n" \
 "         Net-Debug Container         " \
 "-------------------------------------" \
 "Available tools:" \
-"bash, curl, dig (bind-tools), ping (iputils)," \
-"netcat-openbsd, tcpdump, nmap, traceroute," \
-"busybox-extras" \
+"bash, curl, dig, ping, netcat-openbsd," \
+"tcpdump, nmap, traceroute, busybox-extras," \
+"iperf3, mtr, socat, jq" \
 "=====================================" \
 > /etc/motd \
     && echo 'cat /etc/motd' >> /etc/profile \
