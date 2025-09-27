@@ -1,0 +1,17 @@
+services:
+  net-debug:
+    image: alpine-net-debug:0.0.1
+    container_name: net-debug
+    restart: unless-stopped
+    tty: true
+    stdin_open: true
+    command: ["bash","-lc","trap : TERM INT; sleep infinity & wait"]
+
+    # put it into the debug network by default
+    networks:
+      - debugnet
+
+networks:
+  debugnet:
+    driver: bridge
+    attachable: true
