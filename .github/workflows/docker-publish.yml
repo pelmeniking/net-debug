@@ -3,7 +3,7 @@ name: Publish image to GHCR
 on:
   push:
     branches: [ main ]
-    tags: [ 'v*' ]   # optional: bei Tags zusätzlich veröffentlichen
+    tags: [ 'v*' ]   # optional: publish on version tags (v0.0.1 etc.)
 
 permissions:
   contents: read
@@ -26,7 +26,7 @@ jobs:
           username: ${{ github.repository_owner }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Extract metadata (tags, labels)
+      - name: Extract Docker metadata
         id: meta
         uses: docker/metadata-action@v5
         with:
@@ -40,8 +40,9 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           context: .
+          file: ./src/Dockerfile      # falls dein Dockerfile im Repo-Root liegt
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
-          # optional: multi-arch
+          # uncomment for multi-arch:
           # platforms: linux/amd64,linux/arm64
